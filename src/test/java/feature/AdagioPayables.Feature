@@ -36,7 +36,7 @@ And Close Invoice window.
 And Select Inquiries-->Vendors from menubar.
 And Click View Button.
 And close the application.
-
+@sanity
 Scenario: TC05 Payables Invoice Post.
 And enter username & password.
 When click on open button

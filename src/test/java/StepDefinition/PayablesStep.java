@@ -60,6 +60,7 @@ public class PayablesStep {
 	@Then("Click ok button.")
 	public void click_ok_button() {
 		driver.findElementByName("OK").click();
+		driver.findElementByName("OK").click();
 	}
 	
 	@Then("Close Invoice window.")
