@@ -36,7 +36,7 @@ And Close Invoice window.
 And Select Inquiries-->Vendors from menubar.
 And Click View Button.
 And close the application.
-@sanity
+
 Scenario: TC05 Payables Invoice Post.
 And enter username & password.
 When click on open button
@@ -46,5 +46,17 @@ Then Give vendor code.
 And Give distribution code by clicking New button.
 And Take screenshot for New Invoice detail window.
 And verify Acc/Dept value.
+And Post the invoice.
+And close the application.
+@sanity
+Scenario: TC06 Payables Invoice Post with text verification.
+And enter username & password.
+When click on open button
+Then Click ok button.
+And Create new invoice by clicking New button.
+Then Give vendor code.
+And Give distribution code by clicking New button.
+And Take screenshot for New Invoice detail window.
+And GetText for verification.
 And Post the invoice.
 And close the application.

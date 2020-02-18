@@ -1,5 +1,7 @@
 package StepDefinition;
 
+import static org.testng.Assert.assertTrue;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -163,12 +165,14 @@ public class PayablesStep {
 	     System.out.println(imgText);
 		if(imgText.contains("Acct/Dept 2400"))
 	     {
-	    	 driver.findElementByName("OK").click(); 
+	    	 
+	    	 System.out.println("correct Data");
 	     }
 	     else {
 	    	 System.out.println("Incorrect Data");
 	     }
 	     Thread.sleep(1000);
+	     driver.findElementByName("OK").click(); 
 	     driver.findElementByName("OK").click(); 
 	     Thread.sleep(1000);
 	     Pattern close = new Pattern("D:\\Arun\\sikulisnaps\\close.PNG");
@@ -186,6 +190,28 @@ public class PayablesStep {
 		driver.findElementByName("OK").click();
 		driver.findElementByName("Close").click();
 	}
+	
+	@Then("GetText for verification.")
+	public void gettext_for_verification() throws FindFailed, InterruptedException {
+		Screen screen = new Screen();
+		String text = driver.findElementByXPath("//*[@ClassName = 'TSEFinder'][3]").getText();
+		System.out.println(text);
+		String text1 = driver.findElementByXPath("//*[@ClassName = 'TSECurrEdit'][2]").getText();
+		System.out.println(text1);
+		String text2 = driver.findElementByXPath("//*[@ClassName = 'TSECurrEdit'][1]").getText();
+		System.out.println(text2);
+		assertTrue(driver.findElementByXPath("//*[@ClassName = 'TSECurrEdit'][1]").getText().equals(text2));
+		assertTrue(driver.findElementByXPath("//*[@ClassName = 'TSECurrEdit'][2]").getText().equals(text1));
+		assertTrue(driver.findElementByXPath("//*[@ClassName = 'TSEFinder'][3]").getText().equals(text));
+		Thread.sleep(1000);
+	     driver.findElementByName("OK").click(); 
+	     driver.findElementByName("OK").click(); 
+	     Thread.sleep(1000);
+	     Pattern close = new Pattern("D:\\Arun\\sikulisnaps\\close.PNG");
+			screen.click(close);
+	
+	}
+	
 	@Then("close the application.")
 	public void close_the_application() {
 		driver.findElementByName("Close").click();

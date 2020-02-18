@@ -7,16 +7,23 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.winium.DesktopOptions;
 import org.openqa.selenium.winium.WiniumDriver;
 
+import Win.Adagio.Framework.PayablesApp;
+import Win.Adagio.Framework.Reporter;
+import Win.Adagio.Framework.SeleniumBase;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 public class PayablesStep1 {
-	public WiniumDriver driver = null;
-	
+	public WiniumDriver driver;
+private PayablesApp payApp;
+	 
 	@Given("launch payables application.")
 	public void launch_payables_application() throws MalformedURLException, InterruptedException {
 		DesktopOptions options = new DesktopOptions();
@@ -24,15 +31,17 @@ public class PayablesStep1 {
 		driver = new WiniumDriver(new URL("http://127.0.0.1:4723/"),options);
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		Thread.sleep(1000);
+		
 	}
-
+	
 	@Given("enter username & password.")
-	public void enter_username_password() {
+	public void enter_username_password() throws MalformedURLException, InterruptedException {
 		Set<String> allwin = driver.getWindowHandles();
 		List<String> windows = new ArrayList<String>(allwin);
 		String wind = windows.get(0);
 		driver.switchTo().window(wind);
 		driver.findElementByClassName("TSEEdit").sendKeys("sys");
+		
 	}
 
 	@When("click on open button")
@@ -50,4 +59,5 @@ public class PayablesStep1 {
 	public void close_the_application() {
 		driver.findElementByName("Close").click();
 	}
+
 }
