@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+import javax.imageio.ImageIO;
+
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.winium.DesktopOptions;
@@ -28,7 +30,7 @@ import net.sourceforge.tess4j.Tesseract;
 import net.sourceforge.tess4j.TesseractException;
 
 public class PayablesStep {
-	public WiniumDriver driver = null;
+	public WiniumDriver driver;
 	/*@Given("launch winappdriver.")
 	public void launch_winappdriver() throws MalformedURLException {
 		DesktopOptions options = new DesktopOptions();
@@ -211,7 +213,148 @@ public class PayablesStep {
 			screen.click(close);
 	
 	}
+	//************TC07*************************************************************************************************************************TC07
+	@Then("select Reports-->General reports-->Company profile.")
+	public void select_Reports_General_reports_Company_profile() {
+	    driver.findElementByName("Reports").click();
+	    driver.findElementByName("General Reports").click();
+	    driver.findElementByName("Company Profile").click();
+	}
+
+	@Then("select destination as File & format as Excel.")
+	public void select_destination_as_File_format_as_Excel() throws InterruptedException, FindFailed {
+		Thread.sleep(1000);
+		Screen screen = new Screen();
+		Pattern drop = new Pattern("D:\\Arun\\sikulisnaps\\Companyprofdrop.PNG");
+		screen.click(drop);
+		screen.type(Key.DOWN);
+		screen.type(Key.ENTER);
+		screen.type(Key.TAB);
+		screen.type(Key.UP);
+		screen.type(Key.UP);
+		//driver.findElementByName("Open").click();
+	    //driver.findElementByXPath("//*[@ClassName = 'TSEComboBox'][3]").click();
+	    //driver.findElementByName("Screen").click();
+	   // driver.findElementByXPath("//*[@ClassName = 'TSEComboBox'][2]").click();
+	   // driver.findElementByName("Excel").click();
+	}
+
+	@Then("Click print button.")
+	public void click_print_button() throws InterruptedException {
+		driver.findElementByName("Print").click();
+		//driver.findElementByXPath("//*[@ClassName = 'TSButton'][7]").click();
+		Thread.sleep(2000);
+		
+		
+	}
+
+	@Then("close print company profile window.")
+	public void close_print_company_profile_window() throws InterruptedException {
+		Thread.sleep(2000);
+		driver.findElementByName("Close").click();
+		//driver.findElementByXPath("//*[@ClassName = 'TSButton'][3]").click();
+		driver.findElementByName("Exit").click();
+	} 
+	//******Tc08********************************************************************************************************************TC08
+	@Then("select Edit-->Banks from menu bar.")
+	public void select_Edit_Banks_from_menu_bar() {
+		driver.findElementByName("Edit").click();
+		driver.findElementByName("Banks").click();
+	}
+
+	@Then("click new button & add new bank code,description.")
+	public void click_new_button_add_new_bank_code_description() {
+	  driver.findElementByName("New").click();
+	  Screen screen = new Screen();
+	  screen.type("5");
+	  //driver.findElementByXPath("//*[@ClassName = 'TSEFinder'][8]").sendKeys("5");
+	  driver.findElementByXPath("//*[@ClassName = 'TSEEdit'][2]").sendKeys("RBL");
+	}
+
+	@Then("Navigate to address tab & fill address fields.")
+	public void navigate_to_address_tab_fill_address_fields() {
+	    driver.findElementByName("Address").click();
+	    driver.findElementByXPath("//*[@ClassName = 'TSEEdit'][6]").sendKeys("TEST");
+	    driver.findElementByXPath("//*[@ClassName = 'TSEEdit'][5]").sendKeys("TEST");
+	    driver.findElementByXPath("//*[@ClassName = 'TSEEdit'][1]").sendKeys("TEST");
+	    driver.findElementByXPath("//*[@ClassName = 'TSEEdit'][2]").sendKeys("TEST");
+	   // driver.findElementByXPath("//*[@ClassName = 'TSMaskEdit'][2]").clear();
+	    driver.findElementByXPath("//*[@ClassName = 'TSMaskEdit'][2]").sendKeys("12345");
+	    //driver.findElementByXPath("//*[@ClassName = 'TSMaskEdit'][1]").clear();
+	    driver.findElementByXPath("//*[@ClassName = 'TSMaskEdit'][1]").sendKeys("12345");
+	    driver.findElementByXPath("//*[@ClassName = 'TSEEmail'][2]").sendKeys("Test@gmail.com");
+	    driver.findElementByXPath("//*[@ClassName = 'TSEEmail'][1]").sendKeys("www.test.com");
+	    
+	}
+
+	@Then("submit the details by clicking ok button.")
+	public void submit_the_details_by_clicking_ok_button() throws InterruptedException {
+	    driver.findElementByName("OK").click();
+	    Thread.sleep(1000);
+	}
+
+	@Then("verify added bank & close the application.")
+	public void verify_added_bank_close_the_application() {
+		/*Screen screen = new Screen();
+		 screen.type(Key.DOWN,11);
+		/* screen.type(Key.DOWN);
+		 screen.type(Key.DOWN);
+		 screen.type(Key.DOWN);*/
+		 /* screen.type(Key.ENTER);
+		  String BankCode = driver.findElementByXPath("//*[@ClassName = 'TSEFinder'][8]").getText();
+		  String BankName = driver.findElementByXPath("//*[@ClassName = 'TSEEdit'][2]").getText();
+		  System.out.println(BankCode);
+		  System.out.println(BankName);*/
+		driver.findElementByName("Exit").click();
+	}
+	//********TC09****************************************************************************************************************************TC09
+	@Then("click vendors from toolbar & select a vendor from list.")
+	public void click_vendors_from_toolbar_select_a_vendor_from_list() throws FindFailed {
+	    driver.findElementByName("Vendors").click();
+	    Screen screen = new Screen();
+	    Pattern edit = new Pattern("D:\\Arun\\sikulisnaps\\VendorListEdit.PNG");
+	    screen.click(edit);
+	    //driver.findElementByXPath("//*[@ClassName = 'TSButton'][12]").click();
+	   // driver.findElementByName("Edit").click();
+	}
+
+	@Then("Navigate to Notes\\/Alerts tab & add Additional comments.")
+	public void navigate_to_Notes_Alerts_tab_add_Additional_comments() {
+	   driver.findElementByName("Notes/Alerts").click();
+	   driver.findElementByXPath("//*[@ClassName = 'TSEMemo'][1]").sendKeys("Payables vendor comments");
+	}
+
+	@Then("Submit the added comments by clicking ok & close the application.")
+	public void submit_the_added_comments_by_clicking_ok_close_the_application() {
+	   driver.findElementByName("OK").click();
+	   driver.findElementByName("Exit").click();
+	}
+	//********TC10******************************************************************************************************************************TC10
+	@Then("Click profile from toolbar.")
+	public void click_profile_from_toolbar() {
+	    driver.findElementByName("Profile").click();
+	}
+
+	@Then("verify company mail & close the application.")
+	public void verify_company_name_close_the_application() throws IOException, TesseractException, InterruptedException, FindFailed {
 	
+		String CompName = driver.findElementByXPath("//*[@ClassName ='TSEEmail'][1]").getText();
+		System.out.println(CompName);
+		assertTrue(driver.findElementByXPath("//*[@ClassName = 'TSEEmail'][1]").getText().equals(CompName));
+		String comp = driver.findElementByXPath("//*[@ClassName='TSMaskEdit'][2]").getText();
+		System.out.println("name is"+comp);
+		  Screen screen = new Screen();
+	     if(screen.find("D:\\Arun\\sikulisnaps\\CompanyName.PNG") != null)
+	     {
+	    	 System.out.println("correct Data");
+	     }
+	     else {
+	    	 System.out.println("Incorrect Data");
+	     }
+		driver.findElementByName("OK").click();
+		 driver.findElementByName("Exit").click();
+	}
+
 	@Then("close the application.")
 	public void close_the_application() {
 		driver.findElementByName("Close").click();
