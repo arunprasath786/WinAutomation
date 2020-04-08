@@ -14,6 +14,8 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.winium.DesktopOptions;
 import org.openqa.selenium.winium.WiniumDriver;
 import org.sikuli.script.FindFailed;
@@ -59,9 +61,13 @@ public class BankRec extends BaseClass{
 	@FindBy(name = "Receipt Audit List") WebElement RAList;
 	@FindBy(className = "TSEFinder") WebElement BankReference;
 	@FindBy(className = "TSEFinder") WebElement TSEFinder1;
+	@FindBy(className = "TMEFinder") WebElement TMEFinder1;
 	@FindBy(xpath = "//*[@ClassName = 'TSEFinder'][2]")  WebElement TSEFinder2;
+	@FindBy(xpath = "//*[@ClassName = 'TSEFinder'][3]")  WebElement TSEFinder3;
+	@FindBy(xpath = "//*[@ClassName = 'TSEFinder'][4]")  WebElement TSEFinder4;
 	@FindBy(xpath = "//*[@ClassName = 'TSEMCCurrEdit'][1]")  WebElement TSEMCCurrEdit1;
 	@FindBy(xpath = "//*[@ClassName = 'TSEMCCurrEdit'][2]")  WebElement TSEMCCurrEdit2;
+	@FindBy(xpath = "//*[@ClassName = 'TSEMCCurrEdit'][3]")  WebElement TSEMCCurrEdit3;
 	@FindBy(name = "Confirm") WebElement Confirm;
 	@FindBy(name = "User Setup") WebElement UserSetup;
 	@FindBy(name = "New") WebElement New;
@@ -69,6 +75,8 @@ public class BankRec extends BaseClass{
 	@FindBy(xpath = "//*[@ClassName = 'TSEEdit'][2]")  WebElement TSEEdit2;
 	@FindBy(xpath = "//*[@ClassName = 'TSEEdit'][3]")  WebElement TSEEdit3;
 	@FindBy(xpath = "//*[@ClassName = 'TSEEdit'][4]")  WebElement TSEEdit4;
+	@FindBy(xpath = "//*[@ClassName = 'TSEEdit'][5]")  WebElement TSEEdit5;
+	@FindBy(xpath = "//*[@ClassName = 'TSEEdit'][7]")  WebElement TSEEdit7;
 	@FindBy(name = "Edit columns") WebElement Editcolumns;
 	@FindBy(name = "Edit Gridview") WebElement EditGridview;
 	@FindBy(name = "Edit PDF setup") WebElement EditPDFsetup;
@@ -78,6 +86,15 @@ public class BankRec extends BaseClass{
 	@FindBy(name = "Batch Entry") WebElement BatchEntry;
 	@FindBy(name = "Edit") WebElement EditButton;
 	@FindBy(name = "Rename") WebElement RenameButton;
+	@FindBy(name = "Payments") WebElement Payments;
+	@FindBy(name = "Transfers") WebElement Transfers;
+	@FindBy(name = "Customers") WebElement Customers;
+	@FindBy(name = "View") WebElement View;
+	@FindBy(name = "Next") WebElement Next;
+	@FindBy(name = "Find") WebElement Find;
+	@FindBy(name = "Highlight") WebElement Highlight;
+	@FindBy(name = "Options") WebElement Options;
+	@FindBy(name = "Copy") WebElement CopyButton;
 
 	public void launchApp() throws MalformedURLException, InterruptedException {
 		DesktopOptions options = new DesktopOptions();
@@ -123,22 +140,62 @@ public class BankRec extends BaseClass{
 		Screen screen = new Screen();
 		Pattern EP_Icon_Print = new Pattern("D:\\Arun\\sikulisnaps\\EP_Icon_Print.PNG");
 		screen.click(EP_Icon_Print);
-		Thread.sleep(6000);
+		Thread.sleep(14000);
 	}
 	public void CloseButton() throws FindFailed {
 		Screen screen = new Screen();
 		Pattern Sik_CloseButton = new Pattern("D:\\Arun\\sikulisnaps\\CloseButton.PNG");
+		screen.wait(Sik_CloseButton,30);
 		screen.click(Sik_CloseButton);
 	}
 	public void CloseButton1() throws FindFailed {
 		Screen screen = new Screen();
 		Pattern Sik_CloseButton = new Pattern("D:\\Arun\\sikulisnaps\\CloseButton1.PNG");
+		screen.wait(Sik_CloseButton,30);
 		screen.click(Sik_CloseButton);
 	}
-	public void Report_Ok() throws FindFailed {
+	public void FavoritesDrop() throws FindFailed, InterruptedException {
 			Screen screen = new Screen();
-			Pattern ReportOk = new Pattern("D:\\Arun\\sikulisnaps\\ReportOk.PNG");
-			screen.click(ReportOk);
+			Pattern FavoritesDrop = new Pattern("D:\\Arun\\sikulisnaps\\FavoritesDrop.PNG");
+			screen.click(FavoritesDrop);
+			screen.type(Key.DOWN);
+			screen.type(Key.ENTER);
+			EP_Icon_Print();
+			screen.type(Key.TAB);
+			screen.type(Key.TAB);
+			screen.type(Key.DOWN);
+			EP_Icon_Print();
+			screen.type(Key.TAB);
+			screen.type(Key.TAB);
+			screen.type(Key.DOWN);
+			EP_Icon_Print();
+			CloseButton();
+	}
+	public void Give_epcodes(String epcodes) throws FindFailed, InterruptedException {
+		Options.click();
+		TSEEdit1.clear();
+		TSEEdit1.sendKeys(epcodes);
+		Ok();
+		EP_Icon_Print();
+		CloseButton();
+	}
+	public void Give_epcodes_ReceiptAudit(String epcodes) throws FindFailed, InterruptedException {
+		Options.click();
+		TSEEdit1.clear();
+		TSEEdit1.sendKeys(epcodes);
+		Ok();
+		EP_Icon_Print();
+		No();
+		CloseButton1();
+	}
+	public void Give_epcodes_BatchStatus(String epcodes) throws FindFailed, InterruptedException {
+		Options.click();
+		TSEEdit1.clear();
+		TSEEdit1.sendKeys(epcodes);
+		Ok();
+		EP_Icon_Print();
+		No();
+		CloseButton();
 	}
 	//*******************************************************************TC04************************
 	public void Menu_Banks_Report() {
@@ -214,7 +271,7 @@ public class BankRec extends BaseClass{
 		DSlip.click();
 	}
 	public void BankReference() {
-		BankReference.sendKeys("SDP20200309");
+		BankReference.sendKeys("SDP20200403");
 	}
 	//******************************************************************************TC15*************************
 	public void CashFlow_Report() {
@@ -252,6 +309,7 @@ public class BankRec extends BaseClass{
 		TSEEdit3.sendKeys("yss");
 		TSEEdit2.sendKeys("System Account1");
 		TSEEdit1.sendKeys("sys");
+		TSEFinder1.sendKeys("sys");
 		Editcolumns.click();
 		EditGridview.click();
 		EditPDFsetup.click();
@@ -261,13 +319,15 @@ public class BankRec extends BaseClass{
 		OpenClick();
 		TSEEdit4.sendKeys("yss");
 		OpenClick();
+		Ok();
 	}
 	public void OldUser_Login() {
 		OpenClick();
-		Login();
+		//Login();
 		TSEEdit4.clear();
 		TSEEdit4.sendKeys("sys");
 		OpenClick();
+		
 	}
 	//****************************************************************************TC19********************************
 	public void SecurityGroupSetup() {
@@ -275,7 +335,7 @@ public class BankRec extends BaseClass{
 		SecurityGroupSetup.click();
 	}
 	public void SecurityGroup_Details() throws FindFailed {
-		TSEFinder1.sendKeys("sys");
+		TSEFinder1.sendKeys("yys");
 		TSEEdit1.sendKeys("sys security group");
 		Screen screen = new Screen();
 		Pattern SGroupHelp = new Pattern("D:\\Arun\\sikulisnaps\\SGroupHelp.PNG");
@@ -297,11 +357,11 @@ public class BankRec extends BaseClass{
 	public void BatchEntry(){
 		BatchEntry.click();
 	}
-	public void SelectBank_And_Desc(String BatchName,String Reference){
+	public void SelectBank_And_Desc(String BankCode,String BatchName){
+		TSEFinder1.clear();
+		TSEFinder1.sendKeys(BankCode);
 		TSEEdit2.clear();
 		TSEEdit2.sendKeys(BatchName);
-		TSEEdit1.clear();
-		TSEEdit1.sendKeys(Reference);
 		Ok();
 	}
 	public void CustDetails_Amount() {
@@ -352,6 +412,81 @@ public class BankRec extends BaseClass{
 		Yes.click();
 		Ok();
 		CloseButton1();
+	}
+	//******************************************************************************TC24***************************************
+	public void Misc_Receipt(){
+		TSEMCCurrEdit2.clear();
+		TSEMCCurrEdit2.sendKeys("599.00");
+		New();
+		TSEFinder2.sendKeys("GST");
+		Ok();
+	}
+	//******************************************************************************TC25**************************************
+	public void Vendor_PayDetails() throws InterruptedException {
+		Payments.click();
+		Thread.sleep(2000);
+		Screen screen = new Screen();
+		screen.type(Key.TAB);
+		screen.type("CLA01");
+		screen.type(Key.TAB);
+		screen.type(Key.TAB);
+		screen.type(Key.TAB);
+		screen.type(Key.TAB);
+		screen.type("Payments-CLA01");
+		screen.type(Key.TAB);
+		screen.type(Key.SPACE);
+	}
+	//******************************************************************************TC26*****************************************
+	public void Bank_Transfer() {
+		Transfers.click();
+		Screen screen = new Screen();
+		screen.type(Key.TAB);
+		screen.type(Key.TAB);
+		screen.type(Key.TAB);
+		screen.type(Key.TAB);
+		screen.type("CRESTR");
+		screen.type(Key.TAB);
+		screen.type(Key.TAB);
+		screen.type(Key.BACKSPACE);
+		screen.type("100.00");
+		screen.type(Key.TAB);
+		screen.type("Fund transfer between banks");
+	}
+	//*********************************************************************************TC27****************************************
+	public void Customers_Icon() {
+		Customers.click();
+	}
+	public void View_ButtonCLick() {
+		View.click();
+	}
+	public void Next_ButtonClick() {
+		Next.click();
+	}
+	//**********************************************************************************TC28*************************
+	public void FindButton_Click() {
+		Find.click();
+	}
+	public void Find_CustomersBy_Number(String CustomerCode) throws FindFailed {
+		TSEFinder3.sendKeys(CustomerCode);
+		View.click();
+		Ok();
+		CloseButton1();
+	}
+	public void Find_CustomersBy_Name(String CustomerCode1) throws FindFailed {
+		TSEFinder3.sendKeys(CustomerCode1);
+		TSEFinder2.sendKeys("DOUBLE D RENTALS LTD");
+		Highlight.click();
+		Ok();
+	}
+	//********************************************************************************TC44*************************
+	public void CopyButton() {
+		CopyButton.click();
+	}
+	public void Select_bothBatch() throws FindFailed {
+		Screen screen = new Screen();
+		Pattern ReceiptBatch = new Pattern("D:\\Arun\\sikulisnaps\\ReceiptBatch.PNG");
+		screen.type(Key.CTRL);
+		screen.click(ReceiptBatch);
 	}
 	//******************************************************************CloseApp********************************
 	public void Appexit() {

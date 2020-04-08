@@ -37,6 +37,10 @@ public void click_Check_button() {
 public void select_Reports_Maintenance_Reports_Company_Profile_from_BankRec_menu_bar() {
 	new BankRec().Menu_Cprofile_Report();
 }
+@Then("Select report type from favorites & print report.")
+public void select_report_type_from_favorites_print_report() throws FindFailed, InterruptedException {
+	new BankRec().FavoritesDrop();
+}
 @When("Click ep icon button for report print.")
 public void click_ep_icon_button_for_report_print() throws FindFailed, InterruptedException {
 	new BankRec().EP_Icon_Print();
@@ -86,7 +90,7 @@ public void select_Reports_Print_Consolidate_G_L_Transactions_from_BankRec_menu_
 @When("Click ep icon button for report print & Close the print report window.")
 public void click_ep_icon_button_for_report_print_Close_the_print_report_window() throws FindFailed, InterruptedException {
 	new BankRec().EP_Icon_Print();
-	new BankRec().Information();
+	new BankRec().CloseButton();
 }
 //*********************************************************************************************************TC11**************************
 @When("Select Reports-->Bank Transactions from BankRec menu bar.")
@@ -182,7 +186,7 @@ public void click_new_button_to_add_new_batch_entry() {
 }
 @Then("Select bank code,give description & then click ok button.")
 public void select_bank_code_give_description_then_click_ok_button() {
-	new BankRec().SelectBank_And_Desc("ReceiptBatch","RefBatch");
+	new BankRec().SelectBank_And_Desc("SIGNET","ReceiptBatch");
 }
 @Then("Enter  Customer code,receipt amount.")
 public void enter_Customer_code_receipt_amount() {
@@ -216,6 +220,166 @@ public void post_the_batch() throws FindFailed, InterruptedException {
 	new BankRec().EP_Icon_Print();
 	new BankRec().CloseButton();
 }
+//*********************************************************************************************************************TC24**********************
+@Then("Select bank code,bank reference,give description & then click ok button.")
+public void select_bank_code_bank_reference_give_description_then_click_ok_button() {
+	new BankRec().SelectBank_And_Desc("CRESTR", "CRESTR_Receipt");
+}
+@Then("Enter receipt amount & click New button to add distribution code.")
+public void enter_receipt_amount_click_New_button_to_add_distribution_code() {
+	new BankRec().Misc_Receipt();
+}
+@Then("click ok button to submit the batch.")
+public void click_ok_button_to_submit_the_batch() {
+	new BankRec().Ok();
+}
+@Then("post the batch for miscellanious receipt.")
+public void post_the_batch_for_miscellanious_receipt() throws FindFailed, InterruptedException {
+	new BankRec().PostBatch();
+	new BankRec().EP_Icon_Print();
+	new BankRec().CloseButton();
+}
+//*********************************************************************************************************************TC25*************************
+@Then("Enter bank details & click ok button.")
+public void enter_bank_details_click_ok_button() {
+	new BankRec().SelectBank_And_Desc("CRESTR", "CRESTR-Pay");
+}
+@Then("Click payments radio button & give vendor details.")
+public void click_payments_radio_button_give_vendor_details() throws InterruptedException {
+	new BankRec().Vendor_PayDetails();
+}
+//**********************************************************************************************************************TC26**********************
+@Then("Enter bank details for transfer batch & click ok button.")
+public void enter_bank_details_for_transfer_batch_click_ok_button() {
+	new BankRec().SelectBank_And_Desc("SIGNET", "Fund TXion");
+}
+@Then("Click Transfers radio button & give transfer amount,bank details.")
+public void click_Transfers_radio_button_give_transfer_amount_bank_details() {
+	new BankRec().Bank_Transfer();
+}
+//************************************************************************************************************************TC27**********************
+@When("Click Customers icon from tool bar.")
+public void click_Customers_icon_from_tool_bar() {
+	new BankRec().Customers_Icon();
+}
+@When("Click View button to see customer details.")
+public void click_View_button_to_see_customer_details() {
+	new BankRec().View_ButtonCLick();
+}
+@Then("Click Next button to see the next customer details.")
+public void click_Next_button_to_see_the_next_customer_details() throws FindFailed {
+	new BankRec().Next_ButtonClick();
+	new BankRec().Next_ButtonClick();
+	new BankRec().Next_ButtonClick();
+	new BankRec().Next_ButtonClick();
+	new BankRec().Next_ButtonClick();
+	new BankRec().CloseButton1();
+}
+//**********************************************************************************************************************TC28********************
+@When("Click find button & enter customer code\\/name with action radio button to find a customer.")
+public void click_find_button_enter_customer_code_name_with_action_radio_button_to_find_a_customer() throws FindFailed, InterruptedException {
+	new BankRec().FindButton_Click();
+	new BankRec().Find_CustomersBy_Number("SHY01");
+	new BankRec().FindButton_Click();
+	new BankRec().Find_CustomersBy_Name("DOU01");
+}
+//***********************************************************************************************************************TC29********************
+@Then("Click ep options button to give (.*) for company profile report print.")
+public void click_ep_options_button_to_give_for_company_profile_report_print(String epcodes) throws FindFailed, InterruptedException {
+	new BankRec().Give_epcodes(epcodes);
+}
+//**********************************************************************************************************************TC30*******************
+@Then("Click ep options button to give (.*) for Banks report print.")
+public void click_ep_options_button_to_give_for_Banks_report_print(String epcodes) throws FindFailed, InterruptedException {
+	new BankRec().Give_epcodes(epcodes);
+}
+//***********************************************************************************************************************31********************
+@Then("Click ep options button to give (.*) for Distributions report print.")
+public void click_ep_options_button_to_give_for_Distributions_report_print(String epcodes) throws FindFailed, InterruptedException {
+	new BankRec().Give_epcodes(epcodes);
+}
+//************************************************************************************************************************TC32*******************
+@Then("Click ep options button to give (.*) for Distribution sets report print.")
+public void click_ep_options_button_to_give_for_Distributionsets_report_print(String epcodes) throws FindFailed, InterruptedException {
+	new BankRec().Give_epcodes(epcodes);
+}
+//************************************************************************************************************************TC33****************
+@Then("Click ep options button to give (.*) for Bank Notes report print.")
+public void click_ep_options_button_to_give_for_Bank_Notes_report_print(String epcodes) throws FindFailed, InterruptedException {
+	new BankRec().Give_epcodes(epcodes);
+}
+//************************************************************************************************************************TC34****************
+@Then("Click ep options button to give (.*) for Batch Status report print.")
+public void click_ep_options_button_to_give_for_Batch_Status_report_print(String epcodes) throws FindFailed, InterruptedException {
+	new BankRec().Give_epcodes_BatchStatus(epcodes);
+}
+//************************************************************************************************************************TC35****************
+	@Then("Click ep options button to give (.*) for Batches report print.")
+	public void click_ep_options_button_to_give_for_Batches_report_print(String epcodes) throws FindFailed, InterruptedException {
+		new BankRec().Give_epcodes(epcodes);
+	}
+//************************************************************************************************************************TC36****************
+	@Then("Click ep options button to give (.*) for GLTransaction report print.")
+		public void click_ep_options_button_to_give_for_BatchStatus_report_print(String epcodes) throws FindFailed, InterruptedException {
+			new BankRec().Give_epcodes(epcodes);
+	}
+//************************************************************************************************************************TC37****************
+	@Then("Click ep options button to give (.*) for Bank Transaction report print.")
+	public void click_ep_options_button_to_give_for_Bank_Transaction_report_print(String epcodes) throws FindFailed, InterruptedException {
+		new BankRec().Give_epcodes(epcodes);
+	}
+//************************************************************************************************************************TC38****************
+	@Then("Click ep options button to give (.*) for Bank Historical Transaction report print.")
+	public void click_ep_options_button_to_give_for_Bank_Historical_Transaction_report_print(String epcodes) throws FindFailed, InterruptedException {
+		new BankRec().Give_epcodes(epcodes);
+	}
+//************************************************************************************************************************TC39****************
+	@Then("Click ep options button to give (.*) for Bank Reconciliation report print.")
+	public void click_ep_options_button_to_give_for_Bank_Reconciliation_report_print(String epcodes) throws FindFailed, InterruptedException {
+		new BankRec().Give_epcodes(epcodes);
+	}
+//************************************************************************************************************************TC40****************
+	@Then("Click ep options button to give (.*) for Deposit Slip report print.")
+	public void click_ep_options_button_to_give_for_Deposit_Slip_report_print(String epcodes) throws FindFailed, InterruptedException {
+		new BankRec().Give_epcodes(epcodes);
+	}
+//************************************************************************************************************************TC41****************
+	@Then("Click ep options button to give (.*) for Cash Flow report print.")
+	public void click_ep_options_button_to_give_for_Cash_Flow_report_print(String epcodes) throws FindFailed, InterruptedException {
+		new BankRec().Give_epcodes(epcodes);
+	}
+//************************************************************************************************************************TC42****************
+	@Then("Click ep options button to give (.*) for Reconciliation Worksheet report print.")
+	public void click_ep_options_button_to_give_for_Reconciliation_Worksheet_report_print(String epcodes) throws FindFailed, InterruptedException {
+		new BankRec().Give_epcodes(epcodes);
+	}
+//************************************************************************************************************************TC43****************
+	@Then("Click ep options button to give (.*) for Receipt Audit List report print.")
+	public void click_ep_options_button_to_give_for_ReceiptAudit_report_print(String epcodes) throws FindFailed, InterruptedException {
+		new BankRec().Give_epcodes_ReceiptAudit(epcodes);
+	}
+//************************************************************************************************************************TC44****************
+	@Then("Click copy button to copy batch.")
+	public void click_copy_button_to_copy_batch() {
+		new BankRec().CopyButton();
+	}
+	@Then("Select the copy batch details.")
+	public void select_the_copy_batch_details() {
+		new BankRec().Ok();
+	   	}
+	@Then("copy to new batch & post both batches.")
+	public void copy_to_new_batch_post_both_batches() throws FindFailed, InterruptedException {
+		new BankRec().CopyButton();
+		new BankRec().Ok();
+		new BankRec().PostBatch();
+		new BankRec().EP_Icon_Print();
+		new BankRec().CloseButton();
+	}
+//************************************************************************************************************************TC45****************
+//************************************************************************************************************************TC46****************
+//************************************************************************************************************************TC47****************
+//************************************************************************************************************************TC48****************
+//************************************************************************************************************************TC49****************
 //**********************************************************************CloseApp*********************************************
 @Then("Exit BankRec application.")
 public void exit_BankRec_application() {
