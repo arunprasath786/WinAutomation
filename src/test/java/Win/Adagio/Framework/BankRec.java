@@ -306,10 +306,10 @@ public class BankRec extends BaseClass{
 		New.click();
 	}
 	public void NewUser_Details() {
-		TSEEdit3.sendKeys("yss");
+		TSEEdit3.sendKeys("ssy");
 		TSEEdit2.sendKeys("System Account1");
 		TSEEdit1.sendKeys("sys");
-		TSEFinder1.sendKeys("sys");
+		TSEFinder1.sendKeys("ssy");
 		Editcolumns.click();
 		EditGridview.click();
 		EditPDFsetup.click();
@@ -317,7 +317,7 @@ public class BankRec extends BaseClass{
 	}
 	public void NewUser_Login() {
 		OpenClick();
-		TSEEdit4.sendKeys("yss");
+		TSEEdit4.sendKeys("ssy");
 		OpenClick();
 		Ok();
 	}
@@ -335,7 +335,7 @@ public class BankRec extends BaseClass{
 		SecurityGroupSetup.click();
 	}
 	public void SecurityGroup_Details() throws FindFailed {
-		TSEFinder1.sendKeys("yys");
+		TSEFinder1.sendKeys("ssy");
 		TSEEdit1.sendKeys("sys security group");
 		Screen screen = new Screen();
 		Pattern SGroupHelp = new Pattern("D:\\Arun\\sikulisnaps\\SGroupHelp.PNG");

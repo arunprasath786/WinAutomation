@@ -6,7 +6,7 @@ Scenario: TC01 login to BankRec.
 And enter username & password for BankRec.
 When click open button after entering password
 And close BankRec application.
-@File @Demo
+@File @Demo @Menu
 Scenario: TC02 Data Integrity Check.
 And enter username & password for BankRec.
 When click open button after entering password
@@ -119,23 +119,21 @@ When click open button after entering password
 And Select Reports-->Receipt Audit List from BankRec menu bar.
 And Click ep icon button for report print & dont clear the list by clicking no in confirm window..
 And Exit BankRec application.
- @File @Demo1
-Scenario: TC18 Create new useraccount using file menu user setup option.
-And enter username & password for BankRec.
-When click open button after entering password
-And Select File-->User Setup from BankRec menu bar.
-Then Click New button to add user.
-And Give new user details in edit user window & submit it by clicking ok button.
-And Try logging in with new user account.
-And Exit the new user account & login with old user account.
-And Exit BankRec application.
-@File 
+@File @Menu
 Scenario: TC19 Setup Security Group using file menu option.
 And enter username & password for BankRec.
 When click open button after entering password
 And Select File-->Security Group Setup from BankRec menu bar.
 Then Click New button to add user.
 And Give group name,untick Help option in edit security group window & submit it by clicking ok button.
+And Exit BankRec application.
+ @File @Menu
+Scenario: TC18 Create new useraccount using file menu user setup option.
+And enter username & password for BankRec.
+When click open button after entering password
+And Select File-->User Setup from BankRec menu bar.
+Then Click New button to add user.
+And Give new user details in edit user window & submit it by clicking ok button.
 And Exit BankRec application.
 @File1
 Scenario: TC20 Add new currency codes using file menu option.
@@ -208,7 +206,7 @@ And click ok button to submit the batch.
 Then close the batch window.
 And post the batch.
 And Exit BankRec application.
-@Demo @Demo
+@Demo @Menu
 Scenario: TC27 View customer details in BankRec.
 And enter username & password for BankRec.
 When click open button after entering password
@@ -216,7 +214,7 @@ And Click Customers icon from tool bar.
 And Click View button to see customer details.
 Then Click Next button to see the next customer details.
 And Exit BankRec application.
-@Demo
+@Demo @Menu
 Scenario: TC28 Find a customer by highlight,view,edit actions from customer list in BankRec.
 And enter username & password for BankRec.
 When click open button after entering password
